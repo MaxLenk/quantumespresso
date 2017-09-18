@@ -21,8 +21,10 @@ add_adsorbate(Pd_slab, H2_molecule, h, 'ontop')
 
 constraint = FixAtoms(mask=[a.symbol != 'N' for a in slab])
 slab.set_constraint(constraint)
+dyn = QuasiNewton(Pd_slab, trajectory='PdH2_adsorbed.traj')
+dyn.run(fmax=0.05)
 
-write('PdH2_adsorbed.traj',Pd_slab)
+#write('PdH2_adsorbed.traj',Pd_slab)
 
 #slab.set_calculator(EMT())
 #e_slab = slab.get_potential_energy()
