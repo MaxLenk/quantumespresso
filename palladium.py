@@ -9,7 +9,7 @@ a=3.859 #angstrom
 Pd=crystal(['Pd'],basis=[(0,0,0)],spacegroup=225,cellpar=[a,a,a,90,90,90])
 
 #build the (111) surface slab
-Pd_111=surface(Pd,(1,1,1),2)
+Pd_111=surface(Pd,(1,1,1),3)
 Pd_111.center(vacuum=10,axis=2)
 
 #repeat slab
