@@ -8,7 +8,7 @@ from ase.optimize import QuasiNewton
 Pd_slab_path = 'Pd_111.traj'
 output_directory = 'Pd_geometry_optimization_450_571/'
 
-Pd_slab=read('Pd_slab_path')
+Pd_slab=read(Pd_slab_path)
 Pd_slab.calc=espresso(pw=450,
                        dw=4500,
                        kpts=(5,7,1),
