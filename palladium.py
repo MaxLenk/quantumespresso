@@ -13,7 +13,7 @@ Pd_111=surface(Pd,(1,1,1),2)
 Pd_111.center(vacuum=10,axis=2)
 
 #repeat slab
-Pd_111_repeat=Pd_111.repeat((4,4,4))
+Pd_111_repeat=Pd_111.repeat((4,4,1))
 #(1,2,1) corresponds to repeat how many times in x,y,z direction
 
 #save .traj file
