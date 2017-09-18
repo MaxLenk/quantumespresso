@@ -10,21 +10,33 @@ from ase.io import write
 h = 1.85
 d = 1.10
 
-slab = fcc111('Cu', size=(4, 4, 2), vacuum=10.0)
+Pd_slab_path = 'Pd_111.traj'
+H2_slab_path = 'ads_H2.traj'
 
-slab.set_calculator(EMT())
-e_slab = slab.get_potential_energy()
+#slab = fcc111('Cu', size=(4, 4, 2), vacuum=10.0)
+Pd_slab = read(Pd_slab_path)
+H2_molecule = read(H2_slab_path)
 
-molecule = Atoms('2N', positions=[(0., 0., 0.), (0., 0., d)])
-molecule.set_calculator(EMT())
-e_N2 = molecule.get_potential_energy()
+add_adsorbate(Pd_slab, H2_molecule, h, 'ontop')
 
-add_adsorbate(slab, molecule, h, 'ontop')
 constraint = FixAtoms(mask=[a.symbol != 'N' for a in slab])
 slab.set_constraint(constraint)
-dyn = QuasiNewton(slab, trajectory='N2Cu.traj')
-dyn.run(fmax=0.05)
 
-print('Adsorption energy:', e_slab + e_N2 - slab.get_potential_energy())
+write('PdH2_adsorbed.traj',Pd_slab)
+
+#slab.set_calculator(EMT())
+#e_slab = slab.get_potential_energy()
+
+#molecule = Atoms('2N', positions=[(0., 0., 0.), (0., 0., d)])
+#molecule.set_calculator(EMT())
+#e_N2 = molecule.get_potential_energy()
+
+#add_adsorbate(slab, molecule, h, 'ontop')
+#constraint = FixAtoms(mask=[a.symbol != 'N' for a in slab])
+#slab.set_constraint(constraint)
+#dyn = QuasiNewton(slab, trajectory='N2Cu.traj')
+#dyn.run(fmax=0.05)
+
+#print('Adsorption energy:', e_slab + e_N2 - slab.get_potential_energy())
 from ase.visualize import view
-view(slab)
+view(Pd_slab)
