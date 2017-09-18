@@ -6,6 +6,7 @@ from ase.build import surface, fcc111, add_adsorbate
 from ase.spacegroup import crystal
 from ase.visualize import view
 from ase.io import write
+from ase.io import read
 
 h = 1.85
 d = 1.10
