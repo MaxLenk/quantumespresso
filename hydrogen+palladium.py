@@ -18,7 +18,7 @@ H2_slab_path = 'ads_H2.traj'
 Pd_slab = read(Pd_slab_path)
 H2_molecule = read(H2_slab_path)
 
-add_adsorbate(Pd_slab, H2_molecule, h, 'ontop')
+add_adsorbate(Pd_slab, H2_molecule, h, position=(1, 0))
 
 constraint = FixAtoms(mask=[a.symbol != 'N' for a in slab])
 slab.set_constraint(constraint)
