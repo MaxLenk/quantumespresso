@@ -6,6 +6,7 @@ from ase.build import surface, fcc111, add_adsorbate
 from ase.spacegroup import crystal
 from ase.visualize import view
 from ase.io import write
+from ase.io import read
 
 h = 1.85
 d = 1.10
@@ -17,10 +18,14 @@ H2_slab_path = 'ads_H2.traj'
 Pd_slab = read(Pd_slab_path)
 H2_molecule = read(H2_slab_path)
 
-add_adsorbate(Pd_slab, H2_molecule, h, 'ontop')
+H2_molecule.set_calculator(EMT())
+Pd_slab.set_calculator(EMT())
 
-constraint = FixAtoms(mask=[a.symbol != 'N' for a in slab])
-slab.set_constraint(constraint)
+add_adsorbate(Pd_slab, H2_molecule, h, position=(4, 4))
+#add_adsorbate(Pd_slab, H2_molecule, h, position=(1, 0), offset=2)
+
+constraint = FixAtoms(mask=[a.symbol != 'H' for a in Pd_slab])
+Pd_slab.set_constraint(constraint)
 dyn = QuasiNewton(Pd_slab, trajectory='PdH2_adsorbed.traj')
 dyn.run(fmax=0.05)
 
