@@ -21,7 +21,7 @@ H2_molecule = read(H2_slab_path)
 H2_molecule.set_calculator(EMT())
 Pd_slab.set_calculator(EMT())
 
-add_adsorbate(Pd_slab, H2_molecule, h, position=(4, 4))
+add_adsorbate(Pd_slab, H2_molecule, h, position=(2, 1))
 #add_adsorbate(Pd_slab, H2_molecule, h, position=(1, 0), offset=2)
 
 constraint = FixAtoms(mask=[a.symbol != 'H' for a in Pd_slab])
